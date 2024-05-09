@@ -17,7 +17,8 @@ class Rabbit : public bellAndRabbit
 
 
 //종
-class Bell : public bellAndRabbit //종
+class Bell : public bellAndRabbit
+
 {
 
 };
