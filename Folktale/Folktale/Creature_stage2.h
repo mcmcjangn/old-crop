@@ -1,7 +1,7 @@
-#pragma once
+Ôªø#pragma once
 #include "Creature.h"
 
-//∞≈∫œ¿Ã
+//Í±∞Î∂ÅÏù¥
 class Turtle :public Ally
 {
 private:
@@ -10,14 +10,14 @@ public:
 	Turtle(int _health, int _x, int _y);
 };
 
-//≈‰≥¢
+//ÌÜ†ÎÅº
 class Rabbit : public bellAndRabbit
 {
 };
 
 
-//¡æ
-class Bell : public bellAndRabbit //¡æ
+//Ï¢Ö
+class Bell : public bellAndRabbit //Ï¢Ö
 {
 
 };
