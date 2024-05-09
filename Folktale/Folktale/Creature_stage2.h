@@ -17,7 +17,7 @@ class Rabbit : public bellAndRabbit
 
 
 //มพ
-class Bell : public bellAndRabbit //มพ
+class Bell : public bellAndRabbit 
 {
 
 };
