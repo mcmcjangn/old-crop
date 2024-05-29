@@ -1,7 +1,6 @@
 #pragma once
 #include "Creature.h"
 #include <list>
-#include <random>
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
