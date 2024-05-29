@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Forktale", "..\..\exp\forkTale_re\forkTale_re\forkTale_re.vcxproj", "{4B82B671-0464-49C3-B1A0-AAA5C8D842E2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Forktale", ".\Folktale\Folktale.vcxproj", "{4B82B671-0464-49C3-B1A0-AAA5C8D842E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
