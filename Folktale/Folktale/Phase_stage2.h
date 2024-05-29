@@ -32,13 +32,13 @@ private:
     bool stop; // ���� ����
 
     // ���� Ȯ�� ����
-    int game_result=0;
+    int game_result = 0;
 
     //�̷�
-  
 
 
-    
+
+
     //�ؽ���
     SDL_Texture* stage2_bg_texture;
     SDL_Texture* turtle_texture;

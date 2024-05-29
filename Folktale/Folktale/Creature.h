@@ -1,96 +1,156 @@
 #pragma once
 
-class Creature // ÃÖ»óÀ§
-{
-private: //ºÎ¸ðÀÇ private ÇÊµå´Â ÀÚ½Ä Å¬·¡½º¿¡¼­ Á¢±Ù ºÒ°¡ -> ¸Þ¼­µå¸¦ ÅëÇØ ¾÷µ¥ÀÌÆ®ÇÏ°í ÃÊ±âÈ­ÇÏ°í ÀÐ¾î¿Í¾ß ÇÔ;;
-	int pos_x, pos_y;
-	int speed;
-	double health;
-	
-public:
-	Creature(int x, int y, int speed, double health) {
-		//ÀÚ½Ä Å¬·¡½º´Â init ÇÔ¼ö È£Ãâ½Ã ÀÌ°Å ¸ÕÀú È£ÃâÇØ¼­ ÁÂÇ¥ ÇÒ´çÇÏ±â! -> °´ÇÁ¼³¿¡¼­ ¹è¿î °Å´Ï±î ¸ð¸£°Ú´Ù°í ÇÏ¸é ½½ÆÛÀ×
-		pos_x = x;
-		pos_y = y;
-		this->speed = speed;
-		this->health = health;
-	}
-	//setterµé
-	void setXY(int x, int y) { //ÁÂÇ¥ ¾÷µ¥ÀÌÆ® ¸Þ¼­µå
-		pos_x = x;
-		pos_y = y;
-	}
-	void setSpeed(int speed) { //½ºÇÇµå ¾÷µ¥ÀÌÆ® => speed Á¶ÀýÇÏ´Â °´Ã¼ ¾øÀ¸¸é ³ªÁß¿¡ »èÁ¦ÇÕµð´Ù
-		this->speed = speed;
-	}
-	void setHealth(int health) { //HP ¾÷µ¥ÀÌÆ® ¸Þ¼­µå
-		this->health = health;
-	}
-	//getter -> ÀÏ´Ü health¶û x,y ÇØ³õÀ½
-	double getHealth() {
-		return health;
-	}
-	int getX() {
-		return pos_x;
-	}
-	int getY() {
-		return pos_y;
-	}
+#include <random>
 
-	virtual void Draw() = 0;
-	virtual void GetAttackted(int damage) = 0;
-	virtual void move(int newX, int newY) = 0;
-	
+//ui ì ìš© ì‹œ ê°’ ì–»ì–´ì™€ì„œ í• ë‹¹í•˜ê¸°
+//ì—¬ê¸°ì„œ ì •ì˜í•œ ì „ì—­ ë³€ìˆ˜ëŠ” phase_stage3, mainì—ì„œ ì‚¬ìš© ê°€ëŠ¥
+
+enum DIRECTION { LEFT, RIGHT, UP, DOWN, STOP };
+extern std::default_random_engine generator; // Declare the generator here
+
+class Creature // ìµœìƒìœ„
+{
+private: //ë¶€ëª¨ì˜ private í•„ë“œëŠ” ìžì‹ í´ëž˜ìŠ¤ì—ì„œ ì ‘ê·¼ ë¶ˆê°€ -> ë©”ì„œë“œë¥¼ í†µí•´ ì—…ë°ì´íŠ¸í•˜ê³  ì´ˆê¸°í™”í•˜ê³  ì½ì–´ì™€ì•¼ í•¨;;
+    int pos_x, pos_y;
+    int speed;
+    double health;
+
+public:
+    Creature(int x, int y, int speed, double health) {
+        //ìžì‹ í´ëž˜ìŠ¤ëŠ” init í•¨ìˆ˜ í˜¸ì¶œì‹œ ì´ê±° ë¨¼ì € í˜¸ì¶œí•´ì„œ ì¢Œí‘œ í• ë‹¹í•˜ê¸°! -> ê°í”„ì„¤ì—ì„œ ë°°ìš´ ê±°ë‹ˆê¹Œ ëª¨ë¥´ê² ë‹¤ê³  í•˜ë©´ ìŠ¬í¼ìž‰
+        pos_x = x;
+        pos_y = y;
+        this->speed = speed;
+        this->health = health;
+    }
+    //setterë“¤
+    void setXY(int x, int y) { //ì¢Œí‘œ ì—…ë°ì´íŠ¸ ë©”ì„œë“œ
+        pos_x = x;
+        pos_y = y;
+    }
+    void setX(int x) { //xì¢Œí‘œ ì—…ë°ì´íŠ¸ ë©”ì„œë“œ
+        pos_x = x;
+    }
+    void setY(int y) { //yì¢Œí‘œ ì—…ë°ì´íŠ¸ ë©”ì„œë“œ
+        pos_y = y;
+    }
+    void setSpeed(int speed) { //ìŠ¤í”¼ë“œ ì—…ë°ì´íŠ¸ => speed ì¡°ì ˆí•˜ëŠ” ê°ì²´ ì—†ìœ¼ë©´ ë‚˜ì¤‘ì— ì‚­ì œí•©ë””ë‹¤
+        this->speed = speed;
+    }
+    int getSpeed() {
+        //ìŠ¤í”¼ë“œ ì—…ë°ì´íŠ¸ => speed ì¡°ì ˆí•˜ëŠ” ê°ì²´ ì—†ìœ¼ë©´ ë‚˜ì¤‘ì— ì‚­ì œí•©ë””ë‹¤
+        return speed;
+    }
+    void setHealth(int health) { //HP ì—…ë°ì´íŠ¸ ë©”ì„œë“œ
+        this->health = health;
+    }
+    //getter -> ì¼ë‹¨ healthëž‘ x,y í•´ë†“ìŒ
+    double getHealth() {
+        return health;
+    }
+    int getX() {
+        return pos_x;
+    }
+    int getY() {
+        return pos_y;
+    }
+
+    virtual void Draw() = 0;
+    virtual void GetAttackted(int damage) = 0;
+    virtual void move(int newX, int newY) = 0;
+
 };
 
-//°ÅºÏÀÌ °­¾ÆÁö¶Ë ¹Îµé·¹ ±îÄ¡
+//ê±°ë¶ì´ ê°•ì•„ì§€ë˜¥ ë¯¼ë“¤ë ˆ ê¹Œì¹˜
 class Ally : public Creature
 {
 private:
-	int attackPower;
+    int attackPower;
 public:
-	Ally(int x, int y, int speed, double health, int attackPower) : Creature(x, y, speed, health) {
-		this->attackPower = attackPower;
-	}
+    Ally(int x, int y, int speed, double health, int attackPower) : Creature(x, y, speed, health) {
+        this->attackPower = attackPower;
+    }
 };
 
-//º´¾Æ¸® Âü»õ ±¸··ÀÌ
+//ë³‘ì•„ë¦¬ ì°¸ìƒˆ êµ¬ë ì´
 class Monster : public Creature
 {
 private:
-	int attackPower;
-	int target_x, target_y;
+    int attackPower;
+    int target_x, target_y;
 
 public:
-	Monster(int x, int y, int speed, double health, int attackPower, int tX, int tY) : Creature(x, y, speed, health){
-		this->attackPower = attackPower;
-		this->target_x = tX;
-		this->target_y = tY;
-	}
+    Creature* target;
+    Monster(int x, int y, int speed, double health, int attackPower, int tX, int tY) : Creature(x, y, speed, health) {
+        this->attackPower = attackPower;
+        this->target_x = tX;
+        this->target_y = tY;
+    }
+    void setTarget(Creature* newTarget) {
+        target = newTarget;
+    }
+    void setTargetXY(int x, int y) { //íƒ€ê²Ÿ ì¢Œí‘œ setter
+        this->target_x = x;
+        this->target_y = y;
+    }
+    int getTargetX() { //íƒ€ê²Ÿ xì¢Œí‘œ getter
+        return this->target_x;
+    }
+    int getTargetY() { //íƒ€ê²Ÿ yì¢Œí‘œ getter
+        return this->target_y;
+    }
+    int getAttackPower() {
+        return this->attackPower;
+    }
 
-	void setTargetXY(int x, int y) { //Å¸°Ù ÁÂÇ¥ setter
-		this->target_x = x;
-		this->target_y = y;
-	}
-	int getTargetX(int x, int y) { //Å¸°Ù xÁÂÇ¥ getter
-		return this->target_x;
-	}
-	int getTargetY(int x, int y) { //Å¸°Ù yÁÂÇ¥ getter
-		return this->target_y;
-	}
+    void toTarget() {
+        if (getX() < target->getX()) {
+            setX(getX() + getSpeed());
+        }
+        else if (getX() > target->getX()) {
+            setX(getX() - getSpeed());
+        }
 
-	virtual void attackDamage(int attackPower)=0;
-	
+        if (getY() < target->getY()) {
+            setY(getY() + getSpeed());
+        }
+        else if (getY() > target->getY()) {
+            setY(getY() - getSpeed());
+        }
+    }
+
+    virtual void attackDamage(int attackPower) = 0;
+    virtual void GetAttackted(int damage) = 0;
+    virtual void move(int newX, int newY) = 0;
+
 };
 
 
-//Á¾, Åä³¢
+//ì¢…, í† ë¼
 class bellAndRabbit : public Creature
 {
 private:
-	bool isFace = false;
-	int count = 0;
+    bool isFace = false;
+    int count = 0;
 public:
-	virtual void spawn() = 0;
-	//¾ê³×´Â ¹«ºê ½º·çÇÏ±â
+    bellAndRabbit(int x, int y, int speed, double health) : Creature(x, y, speed, health) {
+        isFace = false;
+        count = 0;
+    }
+    //setter
+    void setIsFace(bool isFace) {
+        this->isFace = isFace;
+    }
+    void setCount(int count) {
+        this->count = count;
+    }
+    //getter
+    bool getIsFace() {
+        return this->isFace;
+    }
+    int getCount() {
+        return this->count;
+    }
+
+    virtual void spawn() = 0;
 };
