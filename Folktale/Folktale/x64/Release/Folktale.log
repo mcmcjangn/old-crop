@@ -1,24 +1,10 @@
-<<<<<<< HEAD
 ﻿  main.cpp
-=======
-﻿  Game.cpp
-  Phase_Ending.cpp
-  Phase_Gallery.cpp
-  Phase_Intro.cpp
-  Phase_stage3.cpp
-D:\YeonWoo\A_Study\GameProgramming\old-crop\Folktale\Folktale\Creature.h(74,19): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  main.cpp
->>>>>>> bb16c6770039406642f28475f3089a28df98528d
 D:\YeonWoo\A_Study\GameProgramming\old-crop\Folktale\Folktale\Creature.h(74,19): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 D:\YeonWoo\A_Study\GameProgramming\old-crop\Folktale\Folktale\Creature_stage1.h(30,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\YeonWoo\A_Study\GameProgramming\old-crop\Folktale\Folktale\Creature_stage1.h(34,17): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
 D:\YeonWoo\A_Study\GameProgramming\old-crop\Folktale\Folktale\Creature_stage1.h(35,17): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
   Generating code
-<<<<<<< HEAD
-  2 of 450 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
-=======
-  1 of 450 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
->>>>>>> bb16c6770039406642f28475f3089a28df98528d
+  0 of 450 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
