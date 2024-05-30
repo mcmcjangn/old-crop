@@ -1,6 +1,7 @@
-﻿  Generating code
-  2 of 445 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+﻿  Phase_Intro.cpp
+  Generating code
+  1 of 449 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Folktale.vcxproj -> D:\YeonWoo\A_Study\GameProgramming\old-crop\Folktale\x64\Release\Folktale.exe
