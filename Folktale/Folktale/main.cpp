@@ -13,7 +13,7 @@
 SDL_Window* g_window;
 SDL_Renderer* g_renderer;
 bool g_flag_running = true;
-Uint32 g_last_time_ms;
+Uint32 g_last_time_ms = 0;
 
 // Game Phases
 int g_current_game_phase;
@@ -58,6 +58,12 @@ int main(int argc, char* argv[])
 
         if (g_current_game_phase == PHASE_INTRO)
         {
+            stage1.~Stage1();
+            stage2.~Stage2();
+            stage3.~Stage3();
+            gallery.~Gallery();
+            ending.~Ending();
+
             intro.HandleEvents();
             intro.Update();
             intro.Render();
@@ -70,6 +76,9 @@ int main(int argc, char* argv[])
                 stage1.Reset();
                 is_intro_initialized = true;
             }
+
+            intro.~Intro();
+
             stage1.HandleEvents();
             stage1.Update();
             stage1.Render();
@@ -82,6 +91,9 @@ int main(int argc, char* argv[])
             if (stage2.getResult() == 1 || stage2.getResult() == 2) { //�¸��� ���� ����
                 g_current_game_phase = PHASE_INTRO;
             }
+
+            intro.~Intro();
+
             stage2.HandleEvents();
             stage2.Update();
             stage2.Render();
@@ -91,12 +103,17 @@ int main(int argc, char* argv[])
             if (stage3.getResult() == 1 || stage3.getResult() == 2) { // 게임 승리 또는 패배시 다시 인트로로 돌아오도록 설정해둠
                 g_current_game_phase = PHASE_INTRO;
             }
+
+            intro.~Intro();
+
             stage3.HandleEvents();
             stage3.Update();
             stage3.Render();
         }
         else if (g_current_game_phase == PHASE_GALLERY)
         {
+            intro.~Intro();
+
             gallery.HandleEvents();
             gallery.Update();
             gallery.Render();
