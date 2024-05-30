@@ -16,6 +16,7 @@ private: //부모의 private 필드는 자식 클래스에서 접근 불가 -> �
     double health;
 
 public:
+    Creature() : pos_x(0), pos_y(0), speed(0), health(0) {} //기본 생성자
     Creature(int x, int y, int speed, double health) {
         //자식 클래스는 init 함수 호출시 이거 먼저 호출해서 좌표 할당하기! -> 객프설에서 배운 거니까 모르겠다고 하면 슬퍼잉
         pos_x = x;
@@ -67,8 +68,10 @@ class Ally : public Creature
 private:
     int attackPower;
 public:
-    Ally(int x, int y, int speed, double health, int attackPower) : Creature(x, y, speed, health) {
-        this->attackPower = attackPower;
+    Ally(int x, int y, int speed, double health, int attackPower) : Creature(), attackPower(attackPower) {
+        setXY(x, y);
+        setSpeed(speed);
+        setHealth(health);
     }
 };
 

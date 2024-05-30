@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "Phase_Intro.h"
 
-Intro::Intro()
+Intro::Intro():selected_stage{ false, false, false}
 {
     // For Texture
     SDL_Surface* introBG_surface = IMG_Load("../../Resources/gallery/gallery_bg.png");
@@ -21,23 +21,23 @@ Intro::Intro()
     stagePoop_source_rectangle_ = { 0, 0, stagePoop_source_rectangle_.w, stagePoop_source_rectangle_.h };
     stagePoop_destination_rectangle_ = { 194, 140, stagePoop_source_rectangle_.w, stagePoop_source_rectangle_.h };
 
-    //뱀 스테이지
-    SDL_Surface* stageSnake_surface = IMG_Load("../../Resources/Intro/stage2_icon.png");
-    stageSnake_texture_ = SDL_CreateTextureFromSurface(g_renderer, stageSnake_surface);
-    SDL_FreeSurface(stageSnake_surface);
-
-    SDL_QueryTexture(stageSnake_texture_, NULL, NULL, &stageSnake_source_rectangle_.w, &stageSnake_source_rectangle_.h);
-    stageSnake_source_rectangle_ = { 0, 0, stageSnake_source_rectangle_.w, stageSnake_source_rectangle_.h };
-    stageSnake_destination_rectangle_ = { 88, 357, stageSnake_source_rectangle_.w, stageSnake_source_rectangle_.h };
-
-    //토끼 스테이지
-    SDL_Surface* stageRabbit_surface = IMG_Load("../../Resources/Intro/stage3_icon.png");
+    //별주부 스테이지
+    SDL_Surface* stageRabbit_surface = IMG_Load("../../Resources/Intro/stage2_icon.png");
     stageRabbit_texture_ = SDL_CreateTextureFromSurface(g_renderer, stageRabbit_surface);
     SDL_FreeSurface(stageRabbit_surface);
 
     SDL_QueryTexture(stageRabbit_texture_, NULL, NULL, &stageRabbit_source_rectangle_.w, &stageRabbit_source_rectangle_.h);
     stageRabbit_source_rectangle_ = { 0, 0, stageRabbit_source_rectangle_.w, stageRabbit_source_rectangle_.h };
-    stageRabbit_destination_rectangle_ = { 297, 357, stageRabbit_source_rectangle_.w, stageRabbit_source_rectangle_.h };
+    stageRabbit_destination_rectangle_ = { 88, 357, stageRabbit_source_rectangle_.w, stageRabbit_source_rectangle_.h };
+
+    //까치 스테이지
+    SDL_Surface* stageSnake_surface = IMG_Load("../../Resources/Intro/stage3_icon.png");
+    stageSnake_texture_ = SDL_CreateTextureFromSurface(g_renderer, stageSnake_surface);
+    SDL_FreeSurface(stageSnake_surface);
+
+    SDL_QueryTexture(stageSnake_texture_, NULL, NULL, &stageSnake_source_rectangle_.w, &stageSnake_source_rectangle_.h);
+    stageSnake_source_rectangle_ = { 0, 0, stageSnake_source_rectangle_.w, stageSnake_source_rectangle_.h };
+    stageSnake_destination_rectangle_ = { 297, 357, stageSnake_source_rectangle_.w, stageSnake_source_rectangle_.h };
 
     //Start버튼
     SDL_Surface* start_button_surface = IMG_Load("../../Resources/Intro/start_button.png");
@@ -55,7 +55,7 @@ Intro::Intro()
 
     SDL_QueryTexture(gallery_button_texture_, NULL, NULL, &gallery_button_source_rectangle_.w, &gallery_button_source_rectangle_.h);
     gallery_button_source_rectangle_ = { 0, 0, 349, 109 };
-    gallery_button_destination_rectangle_ = { 616, 133, gallery_button_source_rectangle_.w, gallery_button_source_rectangle_.h };
+    gallery_button_destination_rectangle_ = { 616, 242, gallery_button_source_rectangle_.w, gallery_button_source_rectangle_.h };
 
     //option버튼
     SDL_Surface* option_button_surface = IMG_Load("../../Resources/Intro/option_button.png");
@@ -64,7 +64,7 @@ Intro::Intro()
 
     SDL_QueryTexture(option_button_texture_, NULL, NULL, &option_button_source_rectangle_.w, &option_button_source_rectangle_.h);
     option_button_source_rectangle_ = { 0, 0, 349, 109 };
-    option_button_destination_rectangle_ = { 616, 155, option_button_source_rectangle_.w, option_button_source_rectangle_.h };
+    option_button_destination_rectangle_ = { 616, 373, option_button_source_rectangle_.w, option_button_source_rectangle_.h };
 
     //Exit버튼
     SDL_Surface* exit_button_surface = IMG_Load("../../Resources/Intro/exit_button.png");
@@ -73,7 +73,7 @@ Intro::Intro()
 
     SDL_QueryTexture(exit_button_texture_, NULL, NULL, &exit_button_source_rectangle_.w, &exit_button_source_rectangle_.h);
     exit_button_source_rectangle_ = { 0, 0, 349, 109 };
-    exit_button_destination_rectangle_ = { 616, 177, exit_button_source_rectangle_.w, exit_button_source_rectangle_.h };
+    exit_button_destination_rectangle_ = { 616, 504, exit_button_source_rectangle_.w, exit_button_source_rectangle_.h };
 }
 
 Intro::~Intro()
@@ -158,21 +158,21 @@ void Intro::HandleEvents()
                 else if (event.button.x > stageSnake_destination_rectangle_.x && event.button.x < stageSnake_destination_rectangle_.x + stageSnake_source_rectangle_.w &&
                     event.button.y > stageSnake_destination_rectangle_.y && event.button.y < stageSnake_destination_rectangle_.y + stageSnake_source_rectangle_.h)
                 {
-                    selected_stage[1] = true;
+                    selected_stage[2] = true;
                     selected_stage[0] = false;
-                    selected_stage[2] = false;
+                    selected_stage[1] = false;
                 }
                 //stageRabbit버튼을 누르고 Start버튼을 누르면 Stage3로 넘어감
                 else if (event.button.x > stageRabbit_destination_rectangle_.x && event.button.x < stageRabbit_destination_rectangle_.x + stageRabbit_source_rectangle_.w &&
                     event.button.y > stageRabbit_destination_rectangle_.y && event.button.y < stageRabbit_destination_rectangle_.y + stageRabbit_source_rectangle_.h)
                 {
-                    selected_stage[2] = true;
+                    selected_stage[1] = true;
                     selected_stage[0] = false;
-                    selected_stage[1] = false;
+                    selected_stage[2] = false;
                 }
                 //Start버튼을 누르면 Stage1로 넘어감
-                else if (event.button.x > 327 && event.button.x < 327 + start_button_source_rectangle_.w &&
-                    event.button.y > 78 && event.button.y < 78 + start_button_source_rectangle_.h)
+                else if (event.button.x > start_button_destination_rectangle_.x && event.button.x < start_button_destination_rectangle_.x + start_button_source_rectangle_.w &&
+                    event.button.y > start_button_destination_rectangle_.y && event.button.y < start_button_destination_rectangle_.y + start_button_source_rectangle_.h)
                 {
 
                     if (selected_stage[0] == true)
@@ -189,15 +189,15 @@ void Intro::HandleEvents()
                     }
                 }
                 //Gallery버튼을 누르면 Gallery로 넘어감
-                if (event.button.x > 327 && event.button.x < 327 + gallery_button_source_rectangle_.w &&
-                    event.button.y > 198 && event.button.y < 198 + gallery_button_source_rectangle_.h)
+                if (event.button.x > gallery_button_destination_rectangle_.x && event.button.x < gallery_button_destination_rectangle_.x + gallery_button_source_rectangle_.w &&
+                    event.button.y > gallery_button_destination_rectangle_.y && event.button.y < gallery_button_destination_rectangle_.y + gallery_button_source_rectangle_.h)
                 {
                     g_current_game_phase = PHASE_GALLERY;
                 }
 
                 //Exit버튼을 누르면 게임이 종료됨
-                else if (event.button.x > 327 && event.button.x < 327 + exit_button_source_rectangle_.w &&
-                    event.button.y > 390 && event.button.y < 390 + exit_button_source_rectangle_.h)
+                else if (event.button.x > exit_button_destination_rectangle_.x && event.button.x < exit_button_destination_rectangle_.x + exit_button_source_rectangle_.w &&
+                    event.button.y > exit_button_destination_rectangle_.y && event.button.y < exit_button_destination_rectangle_.y + exit_button_source_rectangle_.h)
                 {
                     g_flag_running = false;
                 }
@@ -206,44 +206,44 @@ void Intro::HandleEvents()
 
         case SDL_MOUSEMOTION:
             //start버튼 위에 마우스가 올라가면 색이 변함
-            if (event.motion.x > 327 && event.motion.x < 327 + start_button_source_rectangle_.w &&
-                event.motion.y > 78 && event.motion.y < 78 + start_button_source_rectangle_.h)
+            if (event.motion.x > start_button_destination_rectangle_.x && event.motion.x < start_button_destination_rectangle_.x + start_button_source_rectangle_.w &&
+                event.motion.y > start_button_destination_rectangle_.y && event.motion.y < start_button_destination_rectangle_.y + start_button_source_rectangle_.h)
             {
-                start_button_source_rectangle_ = { 349, 0, 349, 109 };
+                SDL_SetTextureColorMod(start_button_texture_, 255, 0, 0);
             }
             else
             {
-                start_button_source_rectangle_ = { 0, 0, 349, 109 };
+                SDL_SetTextureColorMod(start_button_texture_, 255, 255, 255);
             }
             //gallery버튼 위에 마우스가 올라가면 색이 변함
-            if (event.motion.x > 327 && event.motion.x < 327 + gallery_button_source_rectangle_.w &&
-                event.motion.y > 198 && event.motion.y < 198 + gallery_button_source_rectangle_.h)
+            if (event.motion.x > gallery_button_destination_rectangle_.x && event.motion.x < gallery_button_destination_rectangle_.x + gallery_button_source_rectangle_.w &&
+                event.motion.y > gallery_button_destination_rectangle_.y && event.motion.y < gallery_button_destination_rectangle_.y + gallery_button_source_rectangle_.h)
             {
-                gallery_button_source_rectangle_ = { 349, 0, 349, 109 };
+                SDL_SetTextureColorMod(gallery_button_texture_, 255, 0, 0);
             }
             else
             {
-                gallery_button_source_rectangle_ = { 0, 0, 349, 109 };
+                SDL_SetTextureColorMod(gallery_button_texture_, 255, 255, 255);
             }
             //option버튼 위에 마우스가 올라가면 색이 변함
-            if (event.motion.x > 327 && event.motion.x < 327 + option_button_source_rectangle_.w &&
-                event.motion.y > 318 && event.motion.y < 318 + option_button_source_rectangle_.h)
+            if (event.motion.x > option_button_destination_rectangle_.x && event.motion.x < option_button_destination_rectangle_.x + option_button_source_rectangle_.w &&
+                event.motion.y > option_button_destination_rectangle_.y && event.motion.y < option_button_destination_rectangle_.y + option_button_source_rectangle_.h)
             {
-                option_button_source_rectangle_ = { 349, 0, 349, 109 };
+                SDL_SetTextureColorMod(option_button_texture_, 255, 0, 0);
             }
             else
             {
-                option_button_source_rectangle_ = { 0, 0, 349, 109 };
+                SDL_SetTextureColorMod(option_button_texture_, 255, 255, 255);
             }
             //exit버튼 위에 마우스가 올라가면 색이 변함
-            if (event.motion.x > 327 && event.motion.x < 327 + exit_button_source_rectangle_.w &&
-                event.motion.y > 390 && event.motion.y < 390 + exit_button_source_rectangle_.h)
+            if (event.motion.x > exit_button_destination_rectangle_.x && event.motion.x < exit_button_destination_rectangle_.x + exit_button_source_rectangle_.w &&
+                event.motion.y > exit_button_destination_rectangle_.y && event.motion.y < exit_button_destination_rectangle_.y + exit_button_source_rectangle_.h)
             {
-                exit_button_source_rectangle_ = { 349, 0, 349, 109 };
+                SDL_SetTextureColorMod(exit_button_texture_, 255, 0, 0);
             }
             else
             {
-                exit_button_source_rectangle_ = { 0, 0, 349, 109 };
+                SDL_SetTextureColorMod(exit_button_texture_, 255, 255, 255);
             }
         default:
             break;
