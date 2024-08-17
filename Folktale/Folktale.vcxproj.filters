@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Creature_stage1.cpp">
+      <Filter>stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Creature_stage2.cpp">
+      <Filter>stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Creature_stage3.cpp">
+      <Filter>stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_Ending.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_Gallery.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_Intro.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_stage1.cpp">
+      <Filter>stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_stage1Ending.cpp">
+      <Filter>stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_stage1Intro.cpp">
+      <Filter>stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_stage2.cpp">
+      <Filter>stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_stage2Ending.cpp">
+      <Filter>stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_stage2Intro.cpp">
+      <Filter>stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_stage3.cpp">
+      <Filter>stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_stage3Ending.cpp">
+      <Filter>stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="Phase_stage3Intro.cpp">
+      <Filter>stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="PhaseManager.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Creature.h">
+      <Filter>main\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>main\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_Ending.h">
+      <Filter>main\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_Gallery.h">
+      <Filter>main\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_Intro.h">
+      <Filter>main\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Creature_stage1.h">
+      <Filter>stage1\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_Stage1Ending.h">
+      <Filter>stage1\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_stage1Game.h">
+      <Filter>stage1\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_Stage1Intro.h">
+      <Filter>stage1\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Creature_stage2.h">
+      <Filter>stage2\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_stage2Ending.h">
+      <Filter>stage2\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_stage2Game.h">
+      <Filter>stage2\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_stage2Intro.h">
+      <Filter>stage2\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Creature_stage3.h">
+      <Filter>stage3\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_stage3Ending.h">
+      <Filter>stage3\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_stage3Game.h">
+      <Filter>stage3\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase_stage3Intro.h">
+      <Filter>stage3\헤더</Filter>
+    </ClInclude>
+    <ClInclude Include="STAGE.h">
+      <Filter>main\헤더</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="stage3">
+      <UniqueIdentifier>{a89e05ee-9765-445a-8803-1f38465c2e66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stage2">
+      <UniqueIdentifier>{2ad40959-74ec-4bfb-8783-98d94b5a5c69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stage1">
+      <UniqueIdentifier>{0a78b1e7-bc97-4bdb-b329-a32da18edb9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{437269cb-6392-4861-a1cd-019998511ca6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\헤더">
+      <UniqueIdentifier>{0595d744-989f-4910-8539-b324abf4f13f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stage1\헤더">
+      <UniqueIdentifier>{c2d8b5a3-f593-4685-8370-d6fdb5177f46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stage2\헤더">
+      <UniqueIdentifier>{8d5292e5-a219-4f61-8846-14f1c1a1a0d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stage3\헤더">
+      <UniqueIdentifier>{04fbab9d-d856-41c1-b958-56d9b4e8f2ff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
