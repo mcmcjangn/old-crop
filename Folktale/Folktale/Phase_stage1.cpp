@@ -3,10 +3,6 @@
 #include <windows.h>
 #include <vector>
 
-Stage1::Stage1() {
-
-}
-
 int g_input;
 
 int g_X;
@@ -25,6 +21,11 @@ const int monsterCount = 50;
 
 // 흘러간 시간 기록
 double g_elapsed_time_ms;
+
+Stage1::Stage1() {
+    //다른 페이즈에서 열렸던 파일들 삭제
+}
+
 
 void Stage1::HandleEvents() {
     SDL_Event event;

@@ -15,11 +15,11 @@ extern default_random_engine generator;
 SDL_Rect stage2_bg_source_rect;
 
 Stage2::Stage2() {
-    
+
     uniform_int_distribution<int> distributionX(0, SCREEN_WIDTH_);
     uniform_int_distribution<int> distributionY(0, SCREEN_HEIGHT_);
     rabbit = new Rabbit(distributionX(generator), distributionY(generator), 1, 3);
-    turtle = new Turtle(1, 1, 0 ,3 , 0);
+    turtle = new Turtle(1, 1, 0, 3, 0);
     coral = new Coral(0, 0, 0, 0, 1);
 
     // ��� �ؽ��� �ε�
@@ -30,7 +30,7 @@ Stage2::Stage2() {
     stage2_bg_destination_rect = { 0, 0, 600, 600 };
 
     //�ź��� �ؽ��� �ε�
-    SDL_Surface*  turtle_surface = IMG_Load("../../Resources/stage2/stage2_turtle.png");
+    SDL_Surface* turtle_surface = IMG_Load("../../Resources/stage2/stage2_turtle.png");
     turtle_texture = SDL_CreateTextureFromSurface(g_renderer, turtle_surface);
     SDL_FreeSurface(turtle_surface);
     turtle_destination_rect.x = turtle->getX() * GRID_stage2;
@@ -39,7 +39,7 @@ Stage2::Stage2() {
     turtle_destination_rect.h = GRID_stage2;
 
     //�䳢 �ؽ��� �ε�
-    SDL_Surface*  rabbit_surface = IMG_Load("../../Resources/stage2/stage2_rabbit.png");
+    SDL_Surface* rabbit_surface = IMG_Load("../../Resources/stage2/stage2_rabbit.png");
     rabbit_texture = SDL_CreateTextureFromSurface(g_renderer, rabbit_surface);
     SDL_FreeSurface(rabbit_surface);
     rabbit_destination_rect.x = rabbit->getX() * GRID_stage2;
@@ -48,7 +48,7 @@ Stage2::Stage2() {
     rabbit_destination_rect.h = GRID_stage2;
 
     //��ȣ �ؽ��� �ε�
-    SDL_Surface*  coral_surface = IMG_Load("../../Resources/stage2/stage2_coral2.png");
+    SDL_Surface* coral_surface = IMG_Load("../../Resources/stage2/stage2_coral2.png");
     coral_texture = SDL_CreateTextureFromSurface(g_renderer, coral_surface);
     SDL_FreeSurface(coral_surface);
     coral_destination_rect.x = coral->getX() * GRID_stage2;
@@ -184,7 +184,7 @@ void Stage2::Update() {
     //�浹ó��
     if (turtle->isCollision_Rabbit(rabbit)) {
         rabbit->setCount(rabbit->getCount() + 1);
-        rabbit->spawn(); 
+        rabbit->spawn();
     }
     if (turtle->isCollision_Coral(coral)) {
         turtle->GetAttackted(1);
@@ -200,7 +200,7 @@ void Stage2::Update() {
 void Stage2::Render() {
     //��� �׸���
     SDL_RenderCopy(g_renderer, stage2_bg_texture, &stage2_bg_source_rect, &stage2_bg_destination_rect);
-    
+
 
     COORD cur;
     cur.X = 0;
@@ -222,15 +222,15 @@ void Stage2::Render() {
         }
         cout << endl;
     }
-    
+
     //�䳢���� �� �׸���
     for (int i = 0; i < rabbit->getCount(); i++) {
-		gan_destination_rect.x = GRID_stage2*21 +i * GRID_stage2;
-		gan_destination_rect.y = GRID_stage2+0;
-		SDL_RenderCopy(g_renderer, gan_texture, NULL, &gan_destination_rect);
-	}
-    
-      
+        gan_destination_rect.x = GRID_stage2 * 21 + i * GRID_stage2;
+        gan_destination_rect.y = GRID_stage2 + 0;
+        SDL_RenderCopy(g_renderer, gan_texture, NULL, &gan_destination_rect);
+    }
+
+
 
 
     //ĳ���ͱ׸���
@@ -239,24 +239,24 @@ void Stage2::Render() {
     rabbit_destination_rect.y = rabbit->getY() * GRID_stage2;
     SDL_RenderCopy(g_renderer, rabbit_texture, NULL, &rabbit_destination_rect);
 
-    
-    
-    
-    
+
+
+
+
     //�ź��� �׸���
-    
+
     turtle_destination_rect.x = turtle->getX() * GRID_stage2;
     turtle_destination_rect.y = turtle->getY() * GRID_stage2;
     SDL_RenderCopy(g_renderer, turtle_texture, NULL, &turtle_destination_rect);
-        
-    
+
+
     //�ź��� ü�� �׸��� 
     for (int i = 0; i < turtle->getHealth(); i++) {
-		heart2_destination_rect.x = GRID_stage2*21+i * GRID_stage2;
-		heart2_destination_rect.y = 0;
-		SDL_RenderCopy(g_renderer, heart2_texture, NULL, &heart2_destination_rect);
-	}
-   
+        heart2_destination_rect.x = GRID_stage2 * 21 + i * GRID_stage2;
+        heart2_destination_rect.y = 0;
+        SDL_RenderCopy(g_renderer, heart2_texture, NULL, &heart2_destination_rect);
+    }
+
 
     //���� ��� ��� 
     cur.X = SCREEN_WIDTH_ + 10;

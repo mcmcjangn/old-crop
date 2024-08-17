@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <iostream>
 #include <string>
 #include "SDL.h"
@@ -38,11 +37,11 @@ extern bool viewedEndings[NUMBER_OF_STAGES][ENDINGS_PER_STAGE];
 class PhaseInterface
 {
 public:
-	PhaseInterface() {};
-	virtual ~PhaseInterface() {};
+    PhaseInterface() {};
+    virtual ~PhaseInterface() {};
 
-	virtual void HandleEvents() = 0;
-	virtual void Update() = 0;
-	virtual void Render() = 0;
+    virtual void HandleEvents() = 0;
+    virtual void Update() = 0;
+    virtual void Render() = 0;
 
 };
